@@ -20243,7 +20243,9 @@
 	    this.layer = layer;
 	    this._setNeedsUpdate = bind(this._setNeedsUpdate, this);
 	    this._updateTree = bind(this._updateTree, this);
+	    this._didResize = bind(this._didResize, this);
 	    this.layer.on("change:subLayers", this._updateTree);
+	    this.layer._context.domEventManager.wrap(window).addEventListener("resize", this._didResize);
 	    this._layoutNode = {
 	      style: {},
 	      children: []
@@ -20254,6 +20256,12 @@
 	      }
 	    }
 	  }
+	
+	  LayerLayout.prototype._didResize = function() {
+	    if (!this.layer.superLayer) {
+	      return this._setNeedsUpdate();
+	    }
+	  };
 	
 	  LayerLayout.prototype._getLayoutProperty = function(property) {
 	    var cssLayoutProperty;
@@ -27966,17 +27974,17 @@
   \******************************/
 /***/ function(module, exports) {
 
-	exports.date = 1453161083;
+	exports.date = 1453192936;
 	
 	exports.branch = "flexbox";
 	
-	exports.hash = "807170c-dirty";
+	exports.hash = "148d184-dirty";
 	
-	exports.build = 1334;
+	exports.build = 1336;
 	
 	exports.version = exports.branch + "/" + exports.hash;
 
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=framer.debug.js.map?hash=feddf9d48523be2d74ef
+//# sourceMappingURL=framer.debug.js.map?hash=0ac271f3b3a1f1f62179
